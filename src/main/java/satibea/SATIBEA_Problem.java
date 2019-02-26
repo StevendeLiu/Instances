@@ -44,7 +44,6 @@ public class SATIBEA_Problem extends Problem {
     private double[] cost;
     private boolean[] used_before;
     private int[] defects;
-    private static int n = 0;
     private List<Integer> mandatoryFeaturesIndices, deadFeaturesIndices;
     public static List<Integer> featureIndicesAllowedFlip;
     private List<Integer> seed;

@@ -1,10 +1,14 @@
+import Generation.Generator;
 import satibea.SATIBEA_Main;
+import satibea.SATIBEA_Problem;
+import utils.InitInstanceUtil;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello World!");
-        String str[] = {"uClinux.dimacs", "60000"};
+        String str[] = {"src/main/resources/instances/uClinux.dimacs", "30000"};
         SATIBEA_Main.main(str);
+        SATIBEA_Problem satibea_problem = InitInstanceUtil.InitIstance();
+        Generator generator = new Generator(satibea_problem);
     }
 }
