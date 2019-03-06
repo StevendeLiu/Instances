@@ -25,8 +25,7 @@ import jmetal.core.Variable;
 import jmetal.encodings.variable.Binary;
 import jmetal.util.JMException;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -239,4 +238,62 @@ public class SATIBEA_Problem extends Problem {
         in.close();
     }
 
+
+    public double[] getCost() {
+        return cost;
+    }
+
+    public void setCost(double[] cost) {
+        this.cost = cost;
+    }
+
+    public boolean[] getUsed_before() {
+        return used_before;
+    }
+
+    public void setUsed_before(boolean[] used_before) {
+        this.used_before = used_before;
+    }
+
+    public int[] getDefects() {
+        return defects;
+    }
+
+    public void setDefects(int[] defects) {
+        this.defects = defects;
+    }
+
+    public List<Integer> getMandatoryFeaturesIndices() {
+        return mandatoryFeaturesIndices;
+    }
+
+    public void setMandatoryFeaturesIndices(List<Integer> mandatoryFeaturesIndices) {
+        this.mandatoryFeaturesIndices = mandatoryFeaturesIndices;
+    }
+
+    public List<Integer> getDeadFeaturesIndices() {
+        return deadFeaturesIndices;
+    }
+
+    public void setDeadFeaturesIndices(List<Integer> deadFeaturesIndices) {
+        this.deadFeaturesIndices = deadFeaturesIndices;
+    }
+
+    public SATIBEA_Problem deepClone() {
+        try {
+            //将对象写入流中
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream;
+            objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(this);
+            //从流中取出
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+            return (SATIBEA_Problem) objectInputStream.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("deepCLone error!");
+        return null;
+    }
 }
